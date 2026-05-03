@@ -295,16 +295,22 @@ img {
   margin: 0 auto;
 }
 
-.testimonial {
-  margin-bottom: 4rem;
-  padding-bottom: 4rem;
-  border-bottom: 1px solid var(--border);
+.testimonials-carousel {
+  position: relative;
 }
 
-.testimonial:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
+.testimonials-carousel__viewport {
+  overflow: hidden;
+}
+
+.testimonials-carousel__track {
+  display: flex;
+  transition: transform 1.1s ease;
+}
+
+.testimonial {
+  min-width: 100%;
+  padding: 0 1rem;
 }
 
 .testimonial__quote {
@@ -337,6 +343,56 @@ img {
   margin-top: 0.2rem;
   text-transform: none;
   letter-spacing: 0.02em;
+}
+
+.testimonials-carousel__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.testimonials-carousel__btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--charcoal);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.testimonials-carousel__btn:hover {
+  background: var(--cream);
+  border-color: var(--accent);
+  color: var(--soft-black);
+}
+
+.testimonials-carousel__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.testimonials-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.testimonials-carousel__dot.active {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ---- PRODUCTIONS ---- */
@@ -927,24 +983,26 @@ img {
             and collaborating with international artists in the UK and beyond.
           </p>
           <p>
-            I&rsquo;ve trained across the UK, India, and Poland, which has really shaped
-            how I work. I&rsquo;m drawn to multilingual, cross-cultural storytelling and
-            making theatre that connects people. I&rsquo;m especially interested in new
-            writing, immersive and forum theatre, and stories about identity, belonging,
-            and the space between people. At the heart of it, I want to make work that
-            moves and puts the human connection at its centre.
+            I&rsquo;ve trained and worked in the UK, India, and Poland, and it has really
+            shaped how I view storytelling and creative collaboration. It is also where my
+            passion for working with international actors and actors from underrepresented
+            socioeconomic and ethnic backgrounds comes from. I&rsquo;m especially interested
+            in new writing, immersive and forum theatre, and stories about identity,
+            belonging, and the space between people. At the heart of it, I want to make
+            work that moves and puts the human connection first.
           </p>
           <p>
             Alongside directing, I&rsquo;ve got a background in English teaching, which
-            definitely feeds into how I approach text and communication in a room. I also
-            work as a marketing officer, creating content and running social media for
-            theatre projects&mdash;most recently for fully sold-out shows at the Arcola
-            and Etcetera Theatre in London.
+            definitely feeds into how I approach text and communication in a room. I am
+            very passionate about language and creating safe environments and continue to
+            educate myself on how power dynamics shape the rehearsal process and
+            classrooms. My mission is to continue to create safe environments for actors,
+            creatives and my students to flourish and do their best work.
           </p>
           <p>
             Fun facts about me: I taught myself Hindi and moved to India for 3 years
             because of Shah Rukh Khan. I worked as a dancer, actress and a TV host. Just
-            google Hasmukh or Comedy Circus!
+            google <em>Hasmukh</em> on Netflix or <em>Comedy Circus</em> on Sony TV!
           </p>
         </div>
       </div>
@@ -994,18 +1052,64 @@ img {
   <div class="divider"></div>
 
   <section class="testimonials">
-    <div class="testimonial fade-in">
-      <p class="testimonial__quote">
-        &ldquo;Asia is a delight to work with. She always brings positive energy to any
-        task she takes on, and she will take on any task necessary&mdash;no task too big
-        or too small. She is superbly organised&mdash;way more than most people I&rsquo;ve
-        worked with in theatre and elsewhere over 3 decades. I came to rely on
-        her&mdash;trusting her to observe and propose what needs to be doing, not just
-        deliver what she has been given. Once you work with her, you&rsquo;d want to find
-        other opportunities to work with her again. That&rsquo;s what I am doing!&rdquo;
-      </p>
-      <p class="testimonial__attribution">Ece Ozdemiroglu</p>
-      <p class="testimonial__role">Founder of Meteatra &middot; <em>Borders</em> at the Arcola Theatre</p>
+    <div class="testimonials-carousel fade-in" id="testimonialsCarousel" aria-roledescription="carousel" aria-label="Testimonials">
+      <div class="testimonials-carousel__viewport">
+        <div class="testimonials-carousel__track" id="testimonialsTrack">
+          <div class="testimonial">
+            <p class="testimonial__quote">
+              &ldquo;Asia is a delight to work with. She always brings positive energy to any
+              task she takes on, and she will take on any task necessary&mdash;no task too big
+              or too small. She is superbly organised&mdash;way more than most people I&rsquo;ve
+              worked with in theatre and elsewhere over 3 decades. I came to rely on
+              her&mdash;trusting her to observe and propose what needs to be doing, not just
+              deliver what she has been given. Once you work with her, you&rsquo;d want to find
+              other opportunities to work with her again. That&rsquo;s what I am doing!&rdquo;
+            </p>
+            <p class="testimonial__attribution">Ece Ozdemiroglu</p>
+            <p class="testimonial__role">Founder of Meteatra &middot; <em>Borders</em> at the Arcola Theatre</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial__quote">
+              &ldquo;During our work together, Asia felt less like an assistant director and
+              more like a creative partner in crime. I would love to work with her again.
+              She&rsquo;s incredibly organised, sharp, and able to spot issues before they
+              become problems and put things in place early. Communication with her was
+              always easy and clear. Her energy and commitment motivated the cast and lifted
+              the whole process.&rdquo;
+            </p>
+            <p class="testimonial__attribution">Secil Honeywill</p>
+            <p class="testimonial__role">Director of <em>Borders: Digital, Political, Emotional</em> at the Arcola Theatre</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial__quote">
+              &ldquo;Asia is a committed, versatile, attentive and creative assistant
+              director. It is an absolute joy to work with her&mdash;she is always aware of
+              the needs of the room, and brings her eye for detail as well as her craft and
+              enthusiasm to any project. I look forward to working with her again&hellip; and
+              see what she creates next!&rdquo;
+            </p>
+            <p class="testimonial__attribution">Victoria Gartner</p>
+            <p class="testimonial__role">Award-winning director of <em>Richard II</em> and founder of Will&amp;Co</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial__quote">
+              &ldquo;Asia&rsquo;s work on <em>Where There Is No Time</em> was invaluable. Her
+              commitment to the process is a testament to her passion and skill as an artist.
+              As assistant director her input was well placed and thought through. She was
+              organised, personable and forward thinking&mdash;solving problems before they
+              arose time and time again.&rdquo;
+            </p>
+            <p class="testimonial__attribution">Hamza Ali</p>
+            <p class="testimonial__role">Movement Director and Director of <em>Where There is No Time</em> at Sevendials Playhouse</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonials-carousel__controls">
+        <button class="testimonials-carousel__btn" id="testimonialsPrev" aria-label="Previous testimonial">&#8592;</button>
+        <button class="testimonials-carousel__btn testimonials-carousel__btn--play" id="testimonialsPlay" aria-label="Pause auto-rotation" aria-pressed="true">&#10074;&#10074;</button>
+        <div class="testimonials-carousel__dots" id="testimonialsDots"></div>
+        <button class="testimonials-carousel__btn" id="testimonialsNext" aria-label="Next testimonial">&#8594;</button>
+      </div>
     </div>
   </section>
 
@@ -1022,6 +1126,62 @@ img {
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); }));
     const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.15 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    (function initTestimonialsCarousel() {
+      const root = document.getElementById('testimonialsCarousel');
+      if (!root) return;
+      const track = document.getElementById('testimonialsTrack');
+      const slides = track.querySelectorAll('.testimonial');
+      const dotsWrap = document.getElementById('testimonialsDots');
+      const prevBtn = document.getElementById('testimonialsPrev');
+      const nextBtn = document.getElementById('testimonialsNext');
+      const playBtn = document.getElementById('testimonialsPlay');
+      const total = slides.length;
+      let index = 0;
+      let timer = null;
+      let userPaused = false;
+      const INTERVAL = 12000;
+      const PLAY_ICON = '▶';
+      const PAUSE_ICON = '❚❚';
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'testimonials-carousel__dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+        dot.addEventListener('click', () => { goTo(i); if (!userPaused) restart(); });
+        dotsWrap.appendChild(dot);
+      });
+      const dots = dotsWrap.querySelectorAll('.testimonials-carousel__dot');
+
+      function goTo(i) {
+        index = (i + total) % total;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((d, di) => d.classList.toggle('active', di === index));
+      }
+      function next() { goTo(index + 1); }
+      function prev() { goTo(index - 1); }
+      function start() { if (userPaused) return; stop(); timer = setInterval(next, INTERVAL); }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function restart() { stop(); start(); }
+      function setPaused(paused) {
+        userPaused = paused;
+        playBtn.textContent = paused ? PLAY_ICON : PAUSE_ICON;
+        playBtn.setAttribute('aria-pressed', paused ? 'false' : 'true');
+        playBtn.setAttribute('aria-label', paused ? 'Play auto-rotation' : 'Pause auto-rotation');
+        if (paused) stop(); else start();
+      }
+
+      prevBtn.addEventListener('click', () => { prev(); if (!userPaused) restart(); });
+      nextBtn.addEventListener('click', () => { next(); if (!userPaused) restart(); });
+      playBtn.addEventListener('click', () => setPaused(!userPaused));
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', () => { if (!userPaused) start(); });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop(); else if (!userPaused) start();
+      });
+
+      start();
+    })();
   </script>
 </body>
 </html>
